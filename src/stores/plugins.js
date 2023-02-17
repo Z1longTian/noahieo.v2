@@ -6,9 +6,6 @@ const persister = ({ store }) => {
     if(states) {
         // replace the store's states
         store.$patch(states)
-        if(states.screenLock) {
-            store.lock()
-        }
     }
     
     // start subscribing
