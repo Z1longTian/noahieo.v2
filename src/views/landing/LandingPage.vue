@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <RouterView />
+    <div class="text-zinc-900">
+        test
     </div>
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
+
 </script>
 
 <style lang="scss" scoped>

@@ -1,0 +1,29 @@
+// tailwindcss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+// scroll bar styles
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #0A0A0A transparent;
+}
+  
+  /* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 1px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: #0A0A0A;
+    border-radius: 20px;
+}
