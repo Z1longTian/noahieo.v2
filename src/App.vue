@@ -5,15 +5,14 @@
         text-zinc-700 dark:text-zinc-300">
 
             <!-- utilities -->
-            <Overlay class="z-40"/>
+            <!-- <Drawer class="z-30"/> -->
+            <Loading class="z-50" />
+            <Modal class="z-30" />
+            <Overlay class="z-20"/>
 
             <!-- header -->
-            <Header class="z-40" />
+            <Header class="z-10" />
             
-            <button @click="utils.openOverlay()"
-            class="text-zinc-900">
-                show
-            </button>
             <!-- content -->
             <RouterView class="z-0 min-h-[200vh]"/>
 
@@ -29,7 +28,9 @@ import { RouterView } from 'vue-router'
 import { useUtilsStore } from '@/stores/utils'
 import Overlay from '@/components/utils/Overlay.vue'
 import Header from '@/components/header/Header.vue'
-
+import Drawer from '@/components/utils/drawers/Drawer.vue'
+import Loading from '@/components/utils/loadings/Loading.vue'
+import Modal from '@/components/utils/modals/Modal.vue'
 const utils = useUtilsStore()
 const darkMode = utils.getDarkMode
 </script>

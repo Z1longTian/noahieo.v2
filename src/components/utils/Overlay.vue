@@ -12,12 +12,11 @@ const showOverlay = utils.getOverlay
 
 function closeUtils() {
     // utils.closeDrawer()
-    // utils.closeModal()
+    utils.closeModal()
     // utils.hideImgView()
-    utils.closeOverlay()
+    utils.endLoading()
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

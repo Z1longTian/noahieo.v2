@@ -14,7 +14,6 @@ export const useUtilsStore = defineStore('utils', () => {
         window.onscroll= () => window.scrollTo(x, y)
     }
     const unlock = () => window.onscroll = () => {}
-    
     watch(screenLock, (val) => {
         val ? lock() : unlock()
     })
@@ -31,12 +30,65 @@ export const useUtilsStore = defineStore('utils', () => {
         showOverlay.value = false
     }
     
-
+    // drawer
     const showDrawer = ref(false)
-    const showModal = ref(false)
-    
-    const showImg = ref(false)
+    const drawerData = ref()
+    const getDrawer = computed(() => showDrawer)
+    const getDrawerData = computed(() => drawerData)
+    const openDrawer = () => {
+        if(showDrawer.value) {
+            showDrawer.value = false
+            setTimeout(() => {
+                showDrawer.value = true
+                drawerData.value = [data]
+            }, 300)
+        } else {
+            showDrawer.value = true
+            drawerData.value = [data]
+        }
+        openOverlay()
+    }
+    const closeDrawer = () => {
+        showDrawer.value = false
+        drawerData.value.length = 0
+        closeOverlay()
+    }
+
+    // loading
     const showLoading = ref(false)
+    const loadingMsg = ref('')
+    const getLoading = computed(() => showLoading)
+    const getLoadingMsg = computed(() => loadingMsg)
+    const startLoading = (msg) => {
+        console.log(msg)
+        loadingMsg.value = msg
+        showLoading.value = true
+        openOverlay()
+    }
+    const endLoading = () => {
+        showLoading.value = false
+        closeOverlay()
+    }
+
+    // modal
+    const showModal = ref(false)
+    const modalData = ref()
+    const getModal = computed(() => showModal)
+    const getModalData = computed(() => modalData)
+    const openModal = (data) => {
+        modalData.value = data
+        showModal.value = true
+        if(data.modal != 'info') {
+            openOverlay()
+        }
+    }
+    const closeModal = () => {
+        // modalData.value = undefined
+        showModal.value = false
+        closeOverlay()
+    }
+
+    const showImg = ref(false)
 
     // dark mode
     const darkMode = ref(localStorage.getItem('darkMode') === 'true')
@@ -61,6 +113,25 @@ export const useUtilsStore = defineStore('utils', () => {
         // overlay
         showOverlay,
         getOverlay,
+        // drawer
+        showDrawer,
+        drawerData,
+        getDrawer,
+        getDrawerData,
+        openDrawer,
+        closeDrawer,
+        // modal
+        showModal,
+        modalData,
+        getModal,
+        getModalData,
+        openModal,
+        closeModal,
+        // loading
+        getLoading,
+        getLoadingMsg,
+        startLoading,
+        endLoading,
         // dark mode
         getDarkMode,
         toggleDarkMode,
