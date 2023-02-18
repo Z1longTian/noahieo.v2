@@ -5,13 +5,13 @@
         text-zinc-700 dark:text-zinc-300">
 
             <!-- utilities -->
-            <!-- <Drawer class="z-30"/> -->
+            <Drawer class="z-30"/>
             <Loading class="z-50" />
             <Modal class="z-30" />
             <Overlay class="z-20"/>
 
             <!-- header -->
-            <Header class="z-10" />
+            <Header class="z-30" />
             
             <!-- content -->
             <RouterView class="z-0 min-h-[200vh]"/>

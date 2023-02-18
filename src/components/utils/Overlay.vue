@@ -11,7 +11,7 @@ const utils = useUtilsStore()
 const showOverlay = utils.getOverlay
 
 function closeUtils() {
-    // utils.closeDrawer()
+    utils.closeDrawer()
     utils.closeModal()
     // utils.hideImgView()
     utils.endLoading()

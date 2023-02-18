@@ -4,25 +4,28 @@
             border-t-red-500 border-b-blue-500"
             :class="circleSize[size]">
         </div>
+        
         <div :class="textSize[size]">
-            {{ msg }}
-            <span v-if="msg">{{ dot }}</span>
+            <slot></slot>
+            <span v-if="slot">{{ dot }}</span>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, useSlots } from 'vue'
+
+// if slot existed
+const slot = useSlots().default !== undefined
 
 const props = defineProps({
-    msg: String,
     size: {
         type: String,
         default: 'sm' // md, lg
     } 
 })
 
-const { size, msg } = props
+const { size } = props
 
 const circleSize = {
     sm: 'p-5',
@@ -37,7 +40,7 @@ const textSize = {
 }
 
 const dot = ref('')
-if(msg){
+if(slot){
     setInterval(() => {
         dot.value += '.'
         if(dot.value.length > 5){

@@ -1,7 +1,9 @@
 <template>
     <div class="fixed inset-0 transition-all duration-300 grid place-items-center"
     :class="showLoading ? 'visible opacity-100' : 'invisible opacity-0'">
-        <DivLoading :msg="msg" size="lg" :key="msg" class="text-zinc-50"/>
+        <DivLoading size="lg" class="text-zinc-50" >
+            {{ msg }}
+        </DivLoading>
     </div>
 </template>
 

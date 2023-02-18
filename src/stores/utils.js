@@ -32,10 +32,10 @@ export const useUtilsStore = defineStore('utils', () => {
     
     // drawer
     const showDrawer = ref(false)
-    const drawerData = ref()
+    const drawerData = ref([])
     const getDrawer = computed(() => showDrawer)
     const getDrawerData = computed(() => drawerData)
-    const openDrawer = () => {
+    const openDrawer = (data) => {
         if(showDrawer.value) {
             showDrawer.value = false
             setTimeout(() => {
@@ -60,7 +60,6 @@ export const useUtilsStore = defineStore('utils', () => {
     const getLoading = computed(() => showLoading)
     const getLoadingMsg = computed(() => loadingMsg)
     const startLoading = (msg) => {
-        console.log(msg)
         loadingMsg.value = msg
         showLoading.value = true
         openOverlay()
