@@ -1,8 +1,8 @@
 <template>
     <div :class="{'dark': darkMode}">
-        <div class="relative font-poppins transition-colors duration-300
+        <div class="relative font-poppins color_transition
         bg-zinc-100 dark:bg-zinc-800
-        text-zinc-700 dark:text-zinc-300">
+        base-text-color">
 
             <!-- utilities -->
             <Drawer class="z-30"/>
@@ -17,7 +17,7 @@
             <RouterView class="z-0 min-h-[200vh]"/>
 
             <!-- footer -->
-            
+            <Footer />
         </div>
         
     </div>
@@ -31,6 +31,7 @@ import Header from '@/components/header/Header.vue'
 import Drawer from '@/components/utils/drawers/Drawer.vue'
 import Loading from '@/components/utils/loadings/Loading.vue'
 import Modal from '@/components/utils/modals/Modal.vue'
+import Footer from '@/components/footer/Footer.vue'
 const utils = useUtilsStore()
 const darkMode = utils.getDarkMode
 </script>

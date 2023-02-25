@@ -6,6 +6,12 @@ const routes = [
         name: 'LandingPage',
         component: () => import('@/views/landing/LandingPage.vue'),
         meta: { title: 'Noah - Vote The Best Art'}
+    },
+    {
+        path: '/account/:address',
+        name: 'Account',
+        component: () => import('@/views/account/Account.vue'),
+        meta: { title: 'Account'}
     }
 ]
 

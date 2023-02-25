@@ -1,6 +1,6 @@
 <template>
     <div @click="closeUtils" 
-        class="fixed inset-0 bg-black transition-all duration-500"
+        class="fixed inset-0 bg-black dark:bg-zinc-500 transition-all duration-500"
         :class="showOverlay ? 'visible opacity-60' : 'invisible opacity-0'">
     </div>
 </template>

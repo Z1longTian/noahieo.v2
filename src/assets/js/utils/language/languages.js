@@ -1,6 +1,6 @@
 // this file contains languages provided
 
-const languageList = [
+export const languageList = [
     {
         label: 'English',
         value: 'en'
@@ -10,7 +10,3 @@ const languageList = [
         value: 'cn'
     }
 ]
-
-export {
-    languageList
-}

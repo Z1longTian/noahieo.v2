@@ -53,6 +53,20 @@ export const useUtilsStore = defineStore('utils', () => {
         drawerData.value.length = 0
         closeOverlay()
     }
+    const openSubDrawer = (data) => {
+        showDrawer.value = false
+        setTimeout(() => {
+            showDrawer.value = true
+            drawerData.value.push(data)
+        }, 300)
+    }
+    const closeSubDrawer = () => {
+        showDrawer.value = false
+        setTimeout(() => {
+            showDrawer.value = true
+            drawerData.value.pop()
+        }, 300)
+    }
 
     // loading
     const showLoading = ref(false)
@@ -105,6 +119,7 @@ export const useUtilsStore = defineStore('utils', () => {
         return 'en'
     })())
     const getLanguage = computed(() => language)
+    const setLanguage = (val) => language.value = val
 
     return {
         // screen lock
@@ -119,6 +134,8 @@ export const useUtilsStore = defineStore('utils', () => {
         getDrawerData,
         openDrawer,
         closeDrawer,
+        openSubDrawer,
+        closeSubDrawer,
         // modal
         showModal,
         modalData,
@@ -137,5 +154,6 @@ export const useUtilsStore = defineStore('utils', () => {
         // language
         language,
         getLanguage,
+        setLanguage
     }
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full flex items-center rounded-lg
+    <div class=" appearance-none relative w-full flex items-center rounded-lg
     text-zinc-900">
         <div v-if="showSearch"
         class="absolute left-0 pl-3">
@@ -105,12 +105,12 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type=number]{
-    -moz-appearance: textfield;
-}
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+// }
+// input[type=number]{
+//     -moz-appearance: textfield;
+// }
 </style>

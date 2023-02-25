@@ -4,8 +4,8 @@ import urls from '@/assets/js/api/urls'
 const API_KEY = import.meta.env.VITE_API_KEY
 
 // api url
-// const BASE_URL = import.meta.env.VITE_API_BASE_URL
-const BASE_URL = 'http://localhost:8000'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL
+// const BASE_URL = 'http://localhost:8000'
 
 // axios instance
 const api = axios.create({
@@ -16,8 +16,9 @@ const api = axios.create({
     }
 })
 
-const apiRequest = async (target, data) => {
-    const { method, url } = urls[target]
+const apiRequest = async (target, data, param) => {
+    let { method, url } = urls[target]
+    url = url(param)
     return new Promise((resolve, reject) => {
         api({
             method,
