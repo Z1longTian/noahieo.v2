@@ -43,7 +43,7 @@ const types = {
 }
 
 const sizes = {
-    sm: 'w-fit px-2 py-1',
+    sm: 'w-fit p-1',
     md: 'w-fit px-10 py-2',
     lg: 'w-fit px-20 py-3',
     full: 'w-full py-3',

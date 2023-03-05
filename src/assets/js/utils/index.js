@@ -74,9 +74,18 @@ export const toAccount = (router, address, fn) => {
     })
     fn && fn()
 }
+/**
+ * ownership of connected user
+ * @param {*} account - account store
+ * @param {*} address - address to be checked
+ * @returns 
+ */
+export const isOwned = (account, address) => computed(() => account.getAddress.value.toLowerCase() === address.toLowerCase())
 
-export const isOwned = (account, address) => {
-    return computed(() => 
-    account.getConnected.value &&
-    account.getAddress.value.toLowerCase() === address.toLowerCase())
+export const refresh = (router) => {
+    setTimeout(() => {
+        router.go()
+    }, 500)
 }
+
+export const updateTitle = (content) => document.title = `${document.title} - ${content}`

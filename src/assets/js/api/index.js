@@ -1,5 +1,6 @@
 import axios from 'axios'
 import urls from '@/assets/js/api/urls'
+import { startLoading, endLoading} from '@/assets/js/utils'
 // api key
 const API_KEY = import.meta.env.VITE_API_KEY
 
@@ -16,19 +17,22 @@ const api = axios.create({
     }
 })
 
-const apiRequest = async (target, data, param) => {
+const apiRequest = async (params) => {
+    const { target, data, param, loadingMsg } = params
     let { method, url } = urls[target]
     url = url(param)
     return new Promise((resolve, reject) => {
+        loadingMsg && startLoading(loadingMsg)
         api({
             method,
             url,
             data
-        }).then(
-            res => resolve(res.data)
-        ).catch(
-            err => reject(err.response.data)
-        )
+        }).then(res => {
+            resolve(res.data)
+            loadingMsg && endLoading()
+        }).catch(err => {
+            reject(err.response.data)
+        })
     })
 }
 

@@ -1,16 +1,19 @@
 <template>
-    <div>
-        {{ isOwner }}
+    <div class="relative">
+        <AccInfo />
+        <AccountTabs />
     </div>
 </template>
 
 <script setup>
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { ref, computed, shallowRef, onBeforeMount, watch } from 'vue'
+import { ref, watch, provide } from 'vue'
 import { useAccountStore } from '@/stores/account'
 import { useUtilsStore } from '@/stores/utils'
-import { isOwned } from '@/assets/js/utils'
+import { isOwned, updateTitle } from '@/assets/js/utils'
 import { apiRequest } from '@/assets/js/api'
+import AccInfo from '@/views/account/AccInfo.vue'
+import AccountTabs from '@/views/account/AccountTabs.vue'
 
 // utilities
 const route = useRoute()
@@ -26,17 +29,25 @@ const address = route.params.address
 const connected = account.getConnected
 const connectedAddress = account.getAddress
 const isOwner = isOwned(account, address)
-const accInfo = ref()
+const acc = (await apiRequest({target: 'getAccount',param: address})).data
+updateTitle(acc.name)
+provide('account', {
+    connected,
+    connectedAddress,
+    isOwner,
+    utils,
+    route,
+    router,
+    language,
+    acc,
+})
 
-// 1. check if address is a valid web3 address
-// 2. check if address is registered
-// above are done in the server side
-onBeforeMount(async () => {
-    const res = await apiRequest('getAccount', {}, address)
-    if(!res.succeeded) {
-        router.push('/404')
-    }
-    accInfo.value = res.data
+// when user connects / disconnects their wallet refresh the page
+watch(isOwner, () => {
+    // set a delay for refreshing the page
+    setTimeout(() => {
+        router.go()
+    }, 500)
 })
 
 </script>

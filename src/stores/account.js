@@ -36,11 +36,19 @@ export const useAccountStore =  defineStore('account', () => {
                     await ethereum.request({
                         method: 'eth_requestAccounts'
                     }).then(async (accounts) => {
-                        // set address, connection, balance
-                        address.value = accounts[0]
-                        
-                        const login = await apiRequest('connectWallet', { address: address.value })
-                        login.succeeded ? connected.value = true : notify('error', 'Failed to Connect')
+                        // set address, connection, balance                        
+                        const login = await apiRequest({
+                            target: 'connectWallet',
+                            data: {
+                                address: accounts[0]
+                            }
+                        })
+                        if(login.succeeded) {
+                            address.value = accounts[0]
+                            connected.value = true
+                        } else {
+                            notify('error', 'Failed to Connect')
+                        }
                         endLoading()
     
                     }).catch(err => {
@@ -65,7 +73,10 @@ export const useAccountStore =  defineStore('account', () => {
     const updateAccount = async (address) => {
         // get balance
         fetchBalance(address)
-        const account = (await apiRequest('getAccount', {}, address)).data        
+        const account = (await apiRequest({
+            target: 'getAccount',
+            param: address
+        })).data     
         name.value = account.name
         likes.value = account.likes
         mails.value = account.mails.sort((a, b) => b.date - a.date)
@@ -87,7 +98,10 @@ export const useAccountStore =  defineStore('account', () => {
     const sysBalance = ref(0)
     const getBalance = computed(() => sysBalance)
     const fetchBalance = async (address) => {
-        sysBalance.value = fromWei((await apiRequest('getSysBalance', {}, address)).data)
+        sysBalance.value = fromWei((await apiRequest({
+            target: 'getSysBalance',
+            param: address
+        })).data)
     }
     // likes
     const likes = ref([])

@@ -5,10 +5,10 @@
         class="absolute left-0 pl-3">
             <SearchIcon />
         </div>
-        <input v-model="input" @input="inputHandler" @change="changeHandler"
+        <input ref="inputRef" v-model="input" @input="inputHandler" @change="changeHandler"
         @keypress.enter="enterPressed" @blur="loseFocus" @focus="gainFocus"
         :type="type" :placeholder="placeholder" :maxlength="limit" rows="4" 
-        :class="[classes,
+        :class="[
         showSearch ? 'pl-10' : 'px-2']"
         class="py-2.5 w-full outline-none rounded-lg 
         bg-white border
@@ -30,6 +30,7 @@
 import { ref } from 'vue'
 import { debounce } from '@/assets/js/utils'
 import { BIconX as ClearIcon, BIconSearch as SearchIcon} from 'bootstrap-icons-vue'
+import { nextTick } from 'process'
 
 const emit = defineEmits([
     'debounce',
@@ -41,7 +42,6 @@ const emit = defineEmits([
 ])
 
 const props = defineProps({
-    classes: String,
     type: String, // text || textarea || number
     placeholder: String,
     limit: Number,
@@ -53,8 +53,9 @@ const props = defineProps({
 })
 
 const input = ref('')
+const inputRef = ref()
 
-const { classes, type, placeholder, limit, showLength, showClear, delay } = props
+const { type, placeholder, limit, showLength, showClear, delay } = props
 
 const inputHandler = (e) => {
     if(delay && delay > 0) {
@@ -94,11 +95,12 @@ const resetInput = () => {
     emit('reset', input.value)
 }
 
-function reset() {
-    input.value = ''
-}
+const reset = () => input.value = ''
+
+const focus = () => nextTick(() => inputRef.value.focus())
 
 defineExpose({
+    focus,
     reset,
 })
 

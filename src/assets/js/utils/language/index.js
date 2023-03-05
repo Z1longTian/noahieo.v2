@@ -57,6 +57,51 @@ export const drawers = {
     }
 }
 
+export const accountPage = {
+    name: {
+        en: 'Name',
+        cn: '昵称'
+    },
+    address: {
+        en: 'Address',
+        cn: '地址'
+    },
+    editPlaceholder: {
+        en: 'Enter name here',
+        cn: '输入昵称'
+    },
+    tabs: {
+        nfts: {
+            en: 'NFTs',
+            cn: 'NFTs'
+        },
+        creativity: {
+            en: 'Creativity',
+            cn: '创意'
+        },
+        favourites: {
+            en: 'Favourites',
+            cn: '喜爱'
+        },
+        listings: {
+            en: 'Listings',
+            cn: '出售中'
+        },
+        battles: {
+            en: 'Battles',
+            cn: '战斗中'
+        },
+        pendings: {
+            en: 'Pendings',
+            cn: '审核中'
+        },
+        activities: {
+            en: 'Activities',
+            cn: '活动'
+        }
+    }
+}
+
 export const footer = {
     join: {
         en: 'Join Community',
